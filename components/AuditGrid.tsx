@@ -105,9 +105,9 @@ export const AuditGrid: React.FC = () => {
           <div 
             key={index} 
             onClick={scrollToContact}
-            className="group relative bg-[#050507] p-8 flex flex-col items-center text-center cursor-pointer hover:bg-zinc-900/40 transition-all duration-300 min-h-[220px] justify-center"
+            className="group relative bg-[#050507] p-8 flex flex-col items-center text-center cursor-pointer hover:bg-zinc-900/60 hover:scale-[1.05] hover:z-10 hover:shadow-2xl hover:shadow-amber-400/5 transition-all duration-300 min-h-[220px] justify-center outline outline-1 outline-transparent hover:outline-zinc-800"
           >
-            <div className="mb-6 p-4 rounded-2xl bg-zinc-900/80 border border-zinc-800 group-hover:border-amber-400/30 group-hover:scale-105 transition-all duration-300 shadow-lg">
+            <div className="mb-6 p-4 rounded-2xl bg-zinc-900/80 border border-zinc-800 group-hover:border-amber-400/30 group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-amber-400/10">
               {audit.icon}
             </div>
             <h3 className="text-xs md:text-sm font-semibold text-zinc-300 group-hover:text-white transition-colors leading-relaxed px-2">
