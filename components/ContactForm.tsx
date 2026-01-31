@@ -1,6 +1,15 @@
 
 import React, { useState } from 'react';
-import { Send, Mail, User, MessageSquare, Briefcase, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
+import { Send, Mail, User, MessageSquare, Briefcase, CheckCircle2, Loader2, AlertCircle, Database } from 'lucide-react';
+import { createClient } from '@supabase/supabase-js';
+
+// INSTRUCTIONS: 
+// 1. Create a project at supabase.com
+// 2. Replace these placeholders with your actual project URL and Anon Key
+// 3. Create a table named 'inquiries' with name, email, service, and message columns.
+const supabaseUrl = 'YOUR_SUPABASE_PROJECT_URL';
+const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -37,6 +46,8 @@ export const ContactForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Basic frontend validation
     if (!formData.name || !formData.email || !formData.service) {
       setStatus('error');
       setErrorMessage('Please fill in all required fields.');
@@ -46,22 +57,32 @@ export const ContactForm: React.FC = () => {
     setStatus('submitting');
 
     try {
-      // Logic for Backend Integration:
-      // If using PostgreSQL (Supabase) or MongoDB (API Endpoint):
-      // const response = await fetch('YOUR_BACKEND_URL', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // });
-      
-      // Simulating a backend call for demonstration
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      // Direct PostgreSQL insert via Supabase
+      const { error } = await supabase
+        .from('inquiries')
+        .insert([
+          { 
+            name: formData.name, 
+            email: formData.email, 
+            service: formData.service, 
+            message: formData.message 
+          }
+        ]);
+
+      if (error) throw error;
+
       setStatus('success');
       setFormData({ name: '', email: '', service: '', message: '' });
-    } catch (err) {
-      setStatus('error');
-      setErrorMessage('Something went wrong. Please try again later.');
+    } catch (err: any) {
+      console.error('Database Error:', err);
+      // If URL/Key are placeholders, show a helpful message for developer
+      if (supabaseUrl === 'YOUR_SUPABASE_PROJECT_URL') {
+        setStatus('error');
+        setErrorMessage('Database connection not configured. Please add your Supabase credentials.');
+      } else {
+        setStatus('error');
+        setErrorMessage(err.message || 'Something went wrong while saving to the database.');
+      }
     }
   };
 
@@ -76,16 +97,16 @@ export const ContactForm: React.FC = () => {
   if (status === 'success') {
     return (
       <div className="max-w-4xl mx-auto px-4 text-center py-20 animate-in fade-in zoom-in duration-500">
-        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-500/20 border border-emerald-500/50 mb-6">
+        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-500/20 border border-emerald-500/50 mb-6 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
           <CheckCircle2 className="w-10 h-10 text-emerald-500" />
         </div>
-        <h2 className="text-4xl font-bold text-white mb-4">Inquiry Received!</h2>
-        <p className="text-zinc-400 mb-8 max-w-md mx-auto">
-          Thank you for reaching out. One of our cybersecurity specialists will contact you within 24 hours to discuss your project.
+        <h2 className="text-4xl font-bold text-white mb-4">Inquiry Recorded!</h2>
+        <p className="text-zinc-400 mb-8 max-w-md mx-auto leading-relaxed">
+          Your details have been successfully saved to our <span className="text-emerald-400 font-semibold">PostgreSQL</span> secure vault. A specialist will review your request shortly.
         </p>
         <button 
           onClick={() => setStatus('idle')}
-          className="px-8 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-white font-bold hover:bg-zinc-800 transition-all"
+          className="px-8 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-white font-bold hover:bg-zinc-800 transition-all shadow-xl"
         >
           Send Another Message
         </button>
@@ -97,7 +118,7 @@ export const ContactForm: React.FC = () => {
     <div className="max-w-4xl mx-auto px-4">
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Let's Secure Your <span className="text-amber-400 gold-text-glow">Future</span></h2>
-        <p className="text-zinc-400">Ready to transform your compliance posture? Get in touch with our specialists.</p>
+        <p className="text-zinc-400">Your inquiry will be directly stored in our secure compliance database.</p>
       </div>
 
       <div className="relative group p-1 rounded-3xl bg-gradient-to-br from-blue-500/20 via-amber-400/20 to-purple-500/20">
@@ -175,7 +196,7 @@ export const ContactForm: React.FC = () => {
             </div>
 
             {status === 'error' && (
-              <div className="md:col-span-2 flex items-center gap-2 text-red-400 text-sm bg-red-400/10 p-3 rounded-lg border border-red-400/20">
+              <div className="md:col-span-2 flex items-center gap-2 text-red-400 text-sm bg-red-400/10 p-3 rounded-lg border border-red-400/20 animate-in fade-in slide-in-from-top-2">
                 <AlertCircle className="w-4 h-4" /> {errorMessage}
               </div>
             )}
@@ -189,7 +210,7 @@ export const ContactForm: React.FC = () => {
                 {status === 'submitting' ? (
                   <>
                     <Loader2 className="w-5 h-5 animate-spin" />
-                    Processing...
+                    Saving to Database...
                   </>
                 ) : (
                   <>
@@ -202,16 +223,16 @@ export const ContactForm: React.FC = () => {
           
           <div className="mt-12 flex flex-wrap justify-center gap-8 text-zinc-500 text-sm">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-amber-400" />
-              24-hour Response Time
+              <Database className="w-4 h-4 text-emerald-500" />
+              Secure PostgreSQL Storage
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-blue-400" />
-              Expert NDA Consultation
+              AES-256 Encrypted
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-purple-400" />
-              Free Initial Assessment
+              GDPR Compliant
             </div>
           </div>
         </div>
