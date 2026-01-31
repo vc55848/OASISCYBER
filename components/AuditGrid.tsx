@@ -14,7 +14,8 @@ import {
   ArrowRight,
   Building,
   Search,
-  BarChart3
+  BarChart3,
+  Sparkles
 } from 'lucide-react';
 
 const audits = [
@@ -30,12 +31,12 @@ const audits = [
   },
   {
     icon: <Building className="w-8 h-8 text-amber-400" />,
-    title: "IRDAI",
+    title: "IRDAI Audit",
     hasArrow: false
   },
   {
     icon: <BarChart3 className="w-8 h-8 text-amber-400" />,
-    title: "SEBI (SYSTEM AND CYBER AUDIT )",
+    title: "SEBI (SYSTEM AND CYBER AUDIT)",
     hasArrow: false
   },
   {
@@ -82,6 +83,11 @@ const audits = [
     icon: <Code2 className="w-8 h-8 text-amber-400" />,
     title: "Secure Source Code Review",
     hasArrow: false
+  },
+  {
+    icon: <Sparkles className="w-8 h-8 text-blue-400 animate-pulse" />,
+    title: "More Incoming",
+    isUpcoming: true
   }
 ];
 
@@ -105,14 +111,23 @@ export const AuditGrid: React.FC = () => {
           <div 
             key={index} 
             onClick={scrollToContact}
-            className="group relative bg-[#050507] p-8 flex flex-col items-center text-center cursor-pointer hover:bg-zinc-900/60 hover:scale-[1.05] hover:z-10 hover:shadow-2xl hover:shadow-amber-400/5 transition-all duration-300 min-h-[220px] justify-center outline outline-1 outline-transparent hover:outline-zinc-800"
+            className={`group relative bg-[#050507] p-8 flex flex-col items-center text-center cursor-pointer hover:bg-zinc-900/60 hover:scale-[1.05] hover:z-10 hover:shadow-2xl transition-all duration-300 min-h-[220px] justify-center outline outline-1 outline-transparent hover:outline-zinc-800 
+              ${audit.isUpcoming ? 'opacity-80 grayscale-[0.5] hover:grayscale-0 md:col-span-2 lg:col-span-2' : 'col-span-1'}
+            `}
           >
-            <div className="mb-6 p-4 rounded-2xl bg-zinc-900/80 border border-zinc-800 group-hover:border-amber-400/30 group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-amber-400/10">
+            <div className={`mb-6 p-4 rounded-2xl bg-zinc-900/80 border border-zinc-800 group-hover:scale-110 transition-all duration-300 shadow-lg ${audit.isUpcoming ? 'group-hover:border-blue-400/30 group-hover:shadow-blue-400/10' : 'group-hover:border-amber-400/30 group-hover:shadow-amber-400/10'}`}>
               {audit.icon}
             </div>
             <h3 className="text-xs md:text-sm font-semibold text-zinc-300 group-hover:text-white transition-colors leading-relaxed px-2">
               {audit.title}
             </h3>
+            
+            {audit.isUpcoming && (
+              <span className="mt-3 px-3 py-1 rounded-full text-[10px] font-bold bg-blue-400/10 border border-blue-400/20 text-blue-400 group-hover:bg-blue-400/20 transition-all uppercase tracking-widest">
+                New Capabilities Loading
+              </span>
+            )}
+
             {audit.hasArrow && (
               <div className="mt-4 text-amber-400 group-hover:translate-x-1 transition-transform">
                 <ArrowRight className="w-4 h-4" />
@@ -120,7 +135,7 @@ export const AuditGrid: React.FC = () => {
             )}
             
             {/* Subtle Hover Glow Line */}
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-amber-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center" />
+            <div className={`absolute bottom-0 left-0 right-0 h-1 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center ${audit.isUpcoming ? 'bg-blue-500' : 'bg-amber-400'}`} />
           </div>
         ))}
       </div>
