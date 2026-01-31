@@ -1,0 +1,8 @@
+{
+  "name": "Copy of Oasiscybertech - Advanced Cybersecurity & Compliance",
+  "description": "A premium web presence for Oasiscybertech, featuring the Oasis compliance tool, cybersecurity consulting, and professional training services. Built with a futuristic purple, blue, and golden aesthetic.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
