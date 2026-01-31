@@ -7,8 +7,9 @@ import { createClient } from '@supabase/supabase-js';
 // 1. Create a project at supabase.com
 // 2. Replace these placeholders with your actual project URL and Anon Key
 // 3. Create a table named 'inquiries' with name, email, service, and message columns.
-const supabaseUrl = 'https://wfwiavhghixnwdojkbts.supabase.co';
-const supabaseKey = 'sb_publishable_qgCGM8SMmQyfTg93B4NF1A_kSwkcdg9';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const ContactForm: React.FC = () => {
