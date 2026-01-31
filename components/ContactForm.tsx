@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Send, Mail, User, MessageSquare, Briefcase } from 'lucide-react';
 
@@ -8,8 +9,20 @@ export const ContactForm: React.FC = () => {
     "CEH Training Program",
     "ISO 42001 AI Management",
     "CYBER SECURITY Essentials",
-    "NETWORK SECURITY Masterclass",
-    "Compliance & Policy Management"
+    "Compliance & Policy Management",
+    "ISO 27001 / 27701 Audit",
+    "SOC Audit",
+    "IRDAI Audit",
+    "SEBI (System & Cyber Audit)",
+    "INTERNAL AUDITS",
+    "Regulatory and Compliance Audits",
+    "VAPT & Red Teaming",
+    "Surveillance Audits",
+    "Third-Party & Vendor Security Audits",
+    "PCI DSS Audits",
+    "DPDP Compliance Audit",
+    "Web Accessibility Audit (WCAG)",
+    "Secure Source Code Review"
   ];
 
   return (

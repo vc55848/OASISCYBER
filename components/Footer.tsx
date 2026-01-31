@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Shield, Twitter, Linkedin, Github, Mail } from 'lucide-react';
+import { Shield, Twitter, Linkedin, Github, Mail, MapPin } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
@@ -41,12 +41,29 @@ export const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="text-white font-bold mb-6">Platform</h4>
-            <ul className="space-y-4 text-sm text-zinc-500">
-              <li><a href="#" className="hover:text-amber-400 transition-colors">Oasis Tool</a></li>
-              <li><a href="#" className="hover:text-amber-400 transition-colors">Risk Management</a></li>
-              <li><a href="#" className="hover:text-amber-400 transition-colors">Policy Builder</a></li>
-              <li><a href="#" className="hover:text-amber-400 transition-colors">Integrations</a></li>
+            <h4 className="text-white font-bold mb-6">Global Presence</h4>
+            <ul className="space-y-6 text-sm text-zinc-500">
+              <li className="flex gap-3">
+                <MapPin className="w-5 h-5 text-amber-400 flex-shrink-0" />
+                <div>
+                  <div className="text-white font-semibold">Dubai Office</div>
+                  <div>Business Bay, Dubai, UAE</div>
+                </div>
+              </li>
+              <li className="flex gap-3">
+                <MapPin className="w-5 h-5 text-amber-400 flex-shrink-0" />
+                <div>
+                  <div className="text-white font-semibold">Australia Office</div>
+                  <div>Collins Street, Melbourne, VIC 3000</div>
+                </div>
+              </li>
+              <li className="flex gap-3">
+                <MapPin className="w-5 h-5 text-amber-400 flex-shrink-0" />
+                <div>
+                  <div className="text-white font-semibold">US Office</div>
+                  <div>Silicon Valley, CA, United States</div>
+                </div>
+              </li>
             </ul>
           </div>
 
@@ -56,8 +73,6 @@ export const Footer: React.FC = () => {
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-amber-400" /> support@oasiscybertech.com
               </li>
-              <li>Silicon Valley, CA</li>
-              <li>United States</li>
             </ul>
             <div className="mt-8">
               <label className="block text-xs font-bold text-zinc-600 uppercase mb-3">Stay Updated</label>

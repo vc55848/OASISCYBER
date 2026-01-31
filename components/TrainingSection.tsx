@@ -34,14 +34,6 @@ const courses = [
     students: '3.5k+',
     image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop',
     tag: 'Fundamentals'
-  },
-  {
-    title: 'NETWORK SECURITY',
-    duration: '5 Weeks',
-    level: 'Intermediate',
-    students: '900+',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2070&auto=format&fit=crop', // Updated to high-fidelity network infrastructure image
-    tag: 'Infrastructure'
   }
 ];
 
@@ -63,7 +55,7 @@ export const TrainingSection: React.FC = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 max-w-5xl mx-auto gap-8">
         {courses.map((course, i) => (
           <div key={i} className="group relative bg-zinc-900/50 border border-zinc-800 rounded-3xl overflow-hidden hover:border-amber-400/50 transition-all duration-300 backdrop-blur-sm">
             <div className="h-48 relative overflow-hidden">

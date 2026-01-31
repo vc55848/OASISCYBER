@@ -19,6 +19,7 @@ export const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
 
   const navItems = [
     { label: 'Consulting', href: 'services' },
+    { label: 'Audits', href: 'audits' },
     { label: 'Oasis Tool', href: 'tool' },
     { label: 'Training', href: 'training' },
     { label: 'Contact', href: 'contact' },

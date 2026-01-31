@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { BentoFeatures } from './components/BentoFeatures';
 import { OasisTool } from './components/OasisTool';
+import { AuditGrid } from './components/AuditGrid';
 import { TrainingSection } from './components/TrainingSection';
 import { ContactForm } from './components/ContactForm';
 import { Footer } from './components/Footer';
@@ -44,6 +45,10 @@ const App: React.FC = () => {
             </p>
           </div>
           <BentoFeatures />
+        </section>
+
+        <section id="audits" className="py-24 scroll-mt-24 bg-zinc-950/50">
+          <AuditGrid />
         </section>
 
         <section id="tool" className="py-24 scroll-mt-24">

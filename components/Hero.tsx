@@ -30,23 +30,13 @@ export const Hero: React.FC = () => {
           <span className="text-amber-400 font-bold">Oasiscybertech</span> provides elite cybersecurity consulting and professional risk management services for global organizations.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-300">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-300">
           <button 
             onClick={scrollToContact}
             className="w-full sm:w-auto px-10 py-4 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-zinc-950 font-extrabold hover:opacity-90 transition-all flex items-center justify-center gap-2 group gold-glow"
           >
             <Play className="w-5 h-5 fill-current" /> Watch Demo
           </button>
-        </div>
-
-        {/* Feature List */}
-        <div className="flex flex-wrap justify-center gap-8 md:gap-16">
-          {['SOC2 / ISO 27001 Ready', 'Real-time Risk Alerts', 'Expert Led Training'].map((item) => (
-            <div key={item} className="flex items-center gap-2 text-zinc-500 font-medium">
-              <CheckCircle2 className="w-5 h-5 text-amber-400" />
-              {item}
-            </div>
-          ))}
         </div>
       </div>
     </section>
